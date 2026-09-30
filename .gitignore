@@ -1,0 +1,21 @@
+# Build artifacts
+bin/
+obj/
+Checkpoint5.Tests/bin/
+Checkpoint5.Tests/obj/
+
+# Runtime data (generated locally, not needed for delivery)
+database/*.db
+database/*.db-shm
+database/*.db-wal
+logs/*.log
+
+# Keep folder structure in git
+!logs/.gitkeep
+
+# IDE / OS files
+.vs/
+.vscode/
+*.user
+.DS_Store
+Thumbs.db
