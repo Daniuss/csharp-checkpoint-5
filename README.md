@@ -10,7 +10,7 @@ de logs em arquivo.
 
 ## 2. Tecnologias utilizadas
 
-- **C# 14 / .NET 10**
+- **C# / .NET 10**
 - **ADO.NET** (via `Microsoft.Data.Sqlite`, um provider ADO.NET — não é ORM)
 - **SQLite** como banco de dados
 - **Microsoft.Extensions.Configuration** para leitura do `appsettings.json`
