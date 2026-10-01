@@ -16,6 +16,12 @@ public class ProdutoRepository
     public ProdutoRepository(string connectionString)
     {
         _connectionString = connectionString ?? throw new ArgumentNullException(nameof(connectionString));
+
+        // O SQLite cria o arquivo do banco automaticamente, mas não cria a pasta onde ele fica.
+        var dataSource = new SqliteConnectionStringBuilder(_connectionString).DataSource;
+        var diretorio = Path.GetDirectoryName(Path.GetFullPath(dataSource));
+        if (!string.IsNullOrEmpty(diretorio))
+            Directory.CreateDirectory(diretorio);
     }
 
     /// <summary>
