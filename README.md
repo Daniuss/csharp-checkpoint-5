@@ -223,15 +223,10 @@ Aprovado!  – Com falha: 0, Aprovado: 10, Ignorado: 0, Total: 10
 7. Escolha `6` para sair.
 8. Abra `logs/app.log` para conferir o registro de todas as operações realizadas.
 
-## Prints para entrega
+## Prints
 
-Capture pelo menos estas três evidências em funcionamento:
+![print1](print1.png)
 
-1. **Inserção de produto** — tela do menu após inserir um produto com sucesso (opção 1).
-2. **Listagem e busca** — tela da listagem (opção 2) e/ou busca por ID (opção 3) mostrando o
-   produto cadastrado.
-3. **Atualização ou exclusão** — tela confirmando a atualização (opção 4) ou exclusão
-   (opção 5) de um produto, seguida da listagem confirmando a mudança.
+![print2](print2.png)
 
-Opcionalmente, inclua também um print do arquivo `logs/app.log` mostrando o histórico de
-operações.
+![print3](print3.png)
