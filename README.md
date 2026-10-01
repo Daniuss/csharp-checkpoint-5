@@ -10,7 +10,7 @@ de logs em arquivo.
 
 ## 2. Tecnologias utilizadas
 
-- **C# 12 / .NET 8**
+- **C# 14 / .NET 10**
 - **ADO.NET** (via `Microsoft.Data.Sqlite`, um provider ADO.NET — não é ORM)
 - **SQLite** como banco de dados
 - **Microsoft.Extensions.Configuration** para leitura do `appsettings.json`
@@ -55,7 +55,7 @@ Nenhum SQL é escrito no `Program.cs` — toda a lógica de acesso a dados está
 
 ## 4. Pré-requisitos
 
-- [.NET SDK 8.0 ou superior](https://dotnet.microsoft.com/download) instalado.
+- [.NET SDK 10.0 ou superior](https://dotnet.microsoft.com/download) instalado.
 - Não é necessário instalar SQL Server nem SQLite manualmente: a biblioteca
   `Microsoft.Data.Sqlite` já inclui o motor SQLite embarcado (via pacote NuGet), e o arquivo
   de banco (`database/produtos.db`) é criado automaticamente na primeira execução.

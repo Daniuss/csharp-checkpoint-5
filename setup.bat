@@ -1,6 +1,6 @@
 @echo off
 REM Script de configuracao e execucao rapida - Cadastro de Produtos (Checkpoint 5)
-REM Requisito: .NET SDK 8.0 ou superior instalado (https://dotnet.microsoft.com/download)
+REM Requisito: .NET SDK 10.0 ou superior instalado (https://dotnet.microsoft.com/download)
 
 echo ====================================
 echo   Cadastro de Produtos - Setup
