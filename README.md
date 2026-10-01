@@ -58,7 +58,12 @@ Nenhum SQL é escrito no `Program.cs` — toda a lógica de acesso a dados está
 - [.NET SDK 10.0 ou superior](https://dotnet.microsoft.com/download) instalado.
 - Não é necessário instalar SQL Server nem SQLite manualmente: a biblioteca
   `Microsoft.Data.Sqlite` já inclui o motor SQLite embarcado (via pacote NuGet), e o arquivo
-  de banco (`database/produtos.db`) é criado automaticamente na primeira execução.
+  de banco (`database/produtos.db`) é criado automaticamente na primeira execução, na pasta
+  de saída da compilação (ex.: `bin/Debug/net10.0/database/produtos.db`), ao lado do
+  executável. Isso garante que o mesmo arquivo seja usado sempre, independente de como a
+  aplicação é iniciada (`dotnet run`, Visual Studio, duplo clique no `.exe` etc.) — o caminho
+  é resolvido em relação à pasta do executável, nunca ao diretório de onde o comando foi
+  chamado.
 
 ### Por que SQLite?
 
@@ -98,21 +103,23 @@ CREATE TABLE IF NOT EXISTS Produtos (
 ```
 
 **Criação automática:** a própria aplicação executa esse mesmo comando (`GarantirBancoCriado`
-em `ProdutoRepository`) na primeira inicialização, criando `database/produtos.db` caso ele
+em `ProdutoRepository`) na primeira inicialização, criando `produtos.db` (dentro de uma pasta
+`database/` ao lado do executável, ex.: `bin/Debug/net10.0/database/produtos.db`) caso ele
 ainda não exista. Não é necessário nenhum passo manual para rodar o projeto.
 
 **Criação manual (opcional):** se quiser recriar o banco manualmente (por exemplo, para
 inspecionar a tabela antes de rodar a aplicação), use o utilitário `sqlite3` ou uma ferramenta
-gráfica como o [DB Browser for SQLite](https://sqlitebrowser.org/):
+gráfica como o [DB Browser for SQLite](https://sqlitebrowser.org/), apontando para o mesmo
+caminho usado pela aplicação (pasta `database/` ao lado do executável):
 
 ```bash
-sqlite3 database/produtos.db < database/script.sql
+sqlite3 bin/Debug/net10.0/database/produtos.db < database/script.sql
 ```
 
 No PowerShell:
 
 ```powershell
-Get-Content database/script.sql | sqlite3 database/produtos.db
+Get-Content database/script.sql | sqlite3 bin/Debug/net10.0/database/produtos.db
 ```
 
 ## 7. Execução
@@ -157,7 +164,8 @@ tratados como dados, e nunca interpretados como parte do comando SQL.
 ## 10. Logs
 
 Todas as operações (inserção, listagem, busca, atualização, exclusão e erros) são
-registradas em `logs/app.log`, com data/hora, no formato:
+registradas em `logs/app.log` (em uma pasta `logs/` criada ao lado do executável, mesma
+lógica do arquivo de banco), com data/hora, no formato:
 
 ```
 [2026-09-30 20:15:32] INFO - Produto inserido: Notebook Dell (Id 1)

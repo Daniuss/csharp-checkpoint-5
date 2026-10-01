@@ -15,11 +15,18 @@ public class ProdutoRepository
 
     public ProdutoRepository(string connectionString)
     {
-        _connectionString = connectionString ?? throw new ArgumentNullException(nameof(connectionString));
+        if (connectionString is null)
+            throw new ArgumentNullException(nameof(connectionString));
 
-        // O SQLite cria o arquivo do banco automaticamente, mas não cria a pasta onde ele fica.
-        var dataSource = new SqliteConnectionStringBuilder(_connectionString).DataSource;
-        var diretorio = Path.GetDirectoryName(Path.GetFullPath(dataSource));
+        // Resolve o caminho do arquivo relativo à pasta do executável (não ao diretório de
+        // trabalho atual), garantindo que o mesmo arquivo de banco seja usado independente
+        // de como a aplicação é iniciada (dotnet run, duplo clique no .exe, Visual Studio etc.).
+        var builder = new SqliteConnectionStringBuilder(connectionString);
+        var caminhoAbsoluto = Path.GetFullPath(builder.DataSource, AppContext.BaseDirectory);
+        builder.DataSource = caminhoAbsoluto;
+        _connectionString = builder.ToString();
+
+        var diretorio = Path.GetDirectoryName(caminhoAbsoluto);
         if (!string.IsNullOrEmpty(diretorio))
             Directory.CreateDirectory(diretorio);
     }

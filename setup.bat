@@ -18,7 +18,7 @@ if %errorlevel% neq 0 goto :erro
 
 echo.
 echo [3/3] Iniciando a aplicacao (dotnet run)...
-echo (O banco de dados SQLite sera criado automaticamente em database\produtos.db)
+echo (O banco de dados SQLite sera criado automaticamente ao lado do executavel, em database\produtos.db)
 echo.
 dotnet run --project Checkpoint5.csproj
 goto :fim

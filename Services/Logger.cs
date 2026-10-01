@@ -6,7 +6,7 @@ namespace Checkpoint5.Services;
 public static class Logger
 {
     private static readonly object _lock = new();
-    private static readonly string _logDirectory = Path.Combine(Directory.GetCurrentDirectory(), "logs");
+    private static readonly string _logDirectory = Path.Combine(AppContext.BaseDirectory, "logs");
     private static readonly string _logFile = Path.Combine(_logDirectory, "app.log");
 
     public static void Info(string mensagem) => Escrever("INFO", mensagem);
